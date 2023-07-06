@@ -19,15 +19,22 @@ public class KeycloakClientConfiguration {
     private String authUrl;
     @Value("${keycloak.realm}")
     private String realm;
+    @Value("${keycloak.username}")
+    private String username;
+    @Value("${keycloak.password}")
+    private String password;
+    @Value("${keycloak.username}")
 
     @Bean
     public Keycloak keycloak() {
         return KeycloakBuilder.builder()
                 .serverUrl(authUrl)
                 .realm(realm)
-                .grantType(CLIENT_CREDENTIALS)
+//                .grantType(CLIENT_CREDENTIALS)
                 .clientId(clientId)
                 .clientSecret(secretKey)
+                .username(username)
+                .password(password)
                 .build();
     }
 }
